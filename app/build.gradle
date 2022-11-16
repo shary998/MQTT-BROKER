@@ -17,12 +17,12 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdk 30
+    compileSdk 33
 
     defaultConfig {
-        applicationId "com.imumotion.amoquette"
+        applicationId "com.shary.mqttbroker"
         minSdk 21
-        targetSdk 30
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
