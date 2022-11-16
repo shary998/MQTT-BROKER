@@ -90,51 +90,51 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     private fun startService() {
         // Retrieve preferences/settings
         val brokerProperties = PreferenceManager.getDefaultSharedPreferences(this)
-         val pass =
-             brokerProperties.getString("password", "password")
-         val host =
-             brokerProperties.getString("host", "192.168.5.10")
-         val maxSize = brokerProperties.getString("netty.mqtt.message_size", "999999999")
-         val wakeLock = brokerProperties.getString("wakelockduration", "2")
+        val pass =
+            brokerProperties.getString("password", "password")
+        val host =
+            brokerProperties.getString("host", "192.168.5.10")
+        val maxSize = brokerProperties.getString("netty.mqtt.message_size", "999999999")
+        val wakeLock = brokerProperties.getString("wakelockduration", "2")
 
-         val props = Properties()
-         props.setProperty(
-             BrokerConstants.PORT_PROPERTY_NAME,
-             brokerProperties?.getString("port", "61613")
-         )
-         props.setProperty(BrokerConstants.NEED_CLIENT_AUTH, "ture")
-         val username = brokerProperties.getString("username", "admin")
-         val password = brokerProperties.getString("password", pass)
+        val props = Properties()
+        props.setProperty(
+            BrokerConstants.PORT_PROPERTY_NAME,
+            brokerProperties?.getString("port", "61613")
+        )
+        props.setProperty(BrokerConstants.NEED_CLIENT_AUTH, "ture")
+        val username = brokerProperties.getString("username", "admin")
+        val password = brokerProperties.getString("password", pass)
 
-         if (password != null) {
-             val sha256hex: String = DigestUtils.sha256Hex(password)
-             val filename = "password.conf"
-             val fileContents = "$username:$sha256hex"
-             try {
-                 openFileOutput(filename, MODE_PRIVATE).use { fos ->
-                     fos.write(fileContents.toByteArray())
-                     val file = File(filesDir, filename)
-                     props.setProperty(
-                         BrokerConstants.PASSWORD_FILE_PROPERTY_NAME,
-                         file.absolutePath
-                     )
-                 }
-             } catch (e: IOException) {
-                 e.printStackTrace()
-             }
-         } else {
-             Toast.makeText(this, "Unable to generate auth file", Toast.LENGTH_SHORT).show()
-         }
+        if (password != null) {
+            val sha256hex: String = DigestUtils.sha256Hex(password)
+            val filename = "password.conf"
+            val fileContents = "$username:$sha256hex"
+            try {
+                openFileOutput(filename, MODE_PRIVATE).use { fos ->
+                    fos.write(fileContents.toByteArray())
+                    val file = File(filesDir, filename)
+                    props.setProperty(
+                        BrokerConstants.PASSWORD_FILE_PROPERTY_NAME,
+                        file.absolutePath
+                    )
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        } else {
+            Toast.makeText(this, "Unable to generate auth file", Toast.LENGTH_SHORT).show()
+        }
 
-         props.setProperty(BrokerConstants.HOST_PROPERTY_NAME, host)
-         props.setProperty(
-             BrokerConstants.WEB_SOCKET_PORT_PROPERTY_NAME,
-             BrokerConstants.WEBSOCKET_PORT.toString()
-         )
+        props.setProperty(BrokerConstants.HOST_PROPERTY_NAME, host)
+        props.setProperty(
+            BrokerConstants.WEB_SOCKET_PORT_PROPERTY_NAME,
+            BrokerConstants.WEBSOCKET_PORT.toString()
+        )
 
         val a = BrokerConstants.NETTY_MAX_BYTES_PROPERTY_NAME
-         props.setProperty(a,maxSize)
-         props.setProperty(BROKER_PROPERTY_WAKE_LOCK_DURATION, wakeLock)
+        props.setProperty(a, maxSize)
+        props.setProperty(BROKER_PROPERTY_WAKE_LOCK_DURATION, wakeLock)
 
         Intent(applicationContext, BrokerService::class.java).also {
             it.action = Action.START.name
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
         serviceAction = ServiceAction.UNDEFINED
 
-        title = "AMoQueTTe Broker"
+        title = "Shary MQTT Broker"
 
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(this).all
