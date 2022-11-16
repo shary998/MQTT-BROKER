@@ -1,0 +1,62 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="host"
+        app:title="Host"
+        app:selectable="false"
+        app:useSimpleSummaryProvider="true"/>
+
+    <EditTextPreference
+        app:key="port"
+        app:title="Port number"
+        app:summary="Default 1883"
+        app:defaultValue="1883" />
+
+    <EditTextPreference
+        app:key="wakelockduration"
+        app:title="Wake lock duration"
+        app:summary="Hours to keep device awake when service running. Default 2; 0 = no wake lock"
+        app:defaultValue="2" />
+
+    <EditTextPreference
+        app:key="heartbeatinterval"
+        app:title="Heartbeat interval [ms]"
+        app:summary="Time between heartbeat messages, used for latency measurement. Default 5000 [ms]; 0 = no heartbeats"
+        app:defaultValue="5000" />
+
+    <EditTextPreference
+        app:key="sysmsginterval"
+        app:title="$SYS message interval"
+        app:summary="Time [s] between sending $SYS messages. Default 60; 0 = no $SYS messages"
+        app:defaultValue="60" />
+
+    <SwitchPreferenceCompat
+        app:key="immediate_buffer_flush"
+        app:title="Immediate buffer flush"
+        app:summary="Immediate flushing reduces latency"
+        app:summaryOff="Optimize performance"
+        app:summaryOn="Optimize latency"
+        app:defaultValue="true" />
+
+    <EditTextPreference
+        app:key="netty.mqtt.message_size"
+        app:title="MQTT message size"
+        app:selectable="false"
+        app:summary="@string/netty.mqtt.message_size"
+        app:defaultValue="999999999" />
+
+    <EditTextPreference
+        app:key="username"
+        app:title="User Name"
+        app:summary="admin"
+        app:defaultValue="sssss" />
+
+    <EditTextPreference
+        app:dependency="password"
+        app:key="password"
+        app:title="Password"
+        app:summary="password"
+        app:defaultValue="passwordsssss" />
+
+
+</PreferenceScreen>
