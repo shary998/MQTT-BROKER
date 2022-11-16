@@ -1,4 +1,4 @@
-# amoquette
+# MQTT Broker By Shaheryar
 A foreground service for Android, wrapping the Moquette MQTT broker and displaying basic diagnostic information about it.
 
 ## Getting Started
